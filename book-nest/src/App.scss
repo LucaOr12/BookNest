@@ -1,33 +1,46 @@
+// App.scss
+@import "./Styles/style.scss";
+
 .app-container {
   max-width: 100%;
   margin: 0 auto;
   padding: 1.5rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #222;
-  background-color: #fafafa;
+  color: $app-text-color;
+  background-color: $app-bg-color;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.app-nav {
+.app-nav-left,
+.app-nav-right {
   display: flex;
   gap: 1.25rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #ddd;
   padding-bottom: 0.75rem;
+}
+
+.app-nav-left {
+  justify-content: flex-start;
+}
+
+.app-nav-right {
+  justify-content: flex-end;
 }
 
 .nav-link {
   text-decoration: none;
-  color: #444;
+  color: $app-text-color;
   font-weight: 500;
   transition: color 0.2s ease;
 
   &:hover {
-    color: #1e3a8a;
+    color: $app-accent-color;
   }
-}
 
-.nav-link--bold {
-  font-weight: 700;
+  &--bold {
+    font-weight: 700;
+    font-size: large;
+  }
 }
 

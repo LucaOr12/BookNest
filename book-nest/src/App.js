@@ -10,11 +10,15 @@ export default function App() {
   return (
     <Router>
       <div className="app-container">
-        <nav className="app-nav">
-          <Link to="/" className="nav-link nav-link--bold">Home</Link>
+        <nav className="app-nav-left">
+          <Link to="/" className="nav-link nav-link--bold">HOME</Link>
           <Link to="/bookshelf" className="nav-link">Bookshelf</Link>
           <Link to="/reserve" className="nav-link">Create Reservation</Link>
+          <nav className="app-nav-right">
+            <Link to="" className="nav-link nav-link--bold">Login</Link>
+          </nav>
         </nav>
+
 
         <main className="app-main">
           <Routes>
