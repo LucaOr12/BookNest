@@ -1,0 +1,110 @@
+@import "src/Styles/style.scss";
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); // sfondo scuro semi-trasparente
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: $app-bg-color;
+  color: $app-text-color;
+  padding: 2rem;
+  width: 320px;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: $app-text-color;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $app-accent-color;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid $app-accent-color;
+    border-radius: 4px;
+    background-color: lighten($app-bg-color, 10%);
+    color: $app-text-color;
+
+    &::placeholder {
+      color: lighten($app-text-color, 20%);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $app-accent-color;
+      box-shadow: 0 0 6px $app-accent-color;
+    }
+  }
+
+  button[type="submit"] {
+    padding: 0.75rem;
+    background-color: $app-accent-color;
+    color: $app-title-color;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($app-accent-color, 10%);
+    }
+  }
+}
+.toggle-mode {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-align: center;
+
+  span {
+    color: $app-accent-color;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 4px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.error {
+  color: $app-error-color;
+  font-size: 0.9rem;
+  text-align: center;
+}

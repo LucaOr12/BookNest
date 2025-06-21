@@ -16,7 +16,7 @@ export default function HomePage() {
       const response = await axios.get("http://localhost:8080/api/Books");
       setBooks(response.data);
     } catch (error) {
-      setError("Impossibile caricare i libri.");
+      setError("Error fetching books.");
     } finally {
       setLoading(false);
     }
@@ -37,7 +37,7 @@ export default function HomePage() {
       <h1>Welcome to Book Nest!</h1>
       <p>Find some books from our catalogue</p>
 
-      <div className="scroll" style={{ "--time": "30s" }}>
+      <div className="scroll" style={{ "--time": "60s" }}>
         {/* Duplico la lista per scorrimento infinito */}
         {[books, books].map((bookList, idx) => (
           <div key={idx}>

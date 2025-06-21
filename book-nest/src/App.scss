@@ -1,16 +1,30 @@
 // App.scss
 @import "./Styles/style.scss";
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $app-bg-color;
+  box-sizing: border-box;
+}
+
 .app-container {
   max-width: 100%;
   margin: 0 auto;
   padding: 1.5rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: $app-text-color;
   background-color: $app-bg-color;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+.app-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
 }
 
 .app-nav-left,
@@ -43,4 +57,3 @@
     font-size: large;
   }
 }
-
