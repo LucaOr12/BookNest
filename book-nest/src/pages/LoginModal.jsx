@@ -5,6 +5,7 @@ import "./LoginModal.scss";
 export default function LoginModal({ onClose, onLogin }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isRegistering, setIsRegistering] = useState(false);
 
@@ -17,17 +18,25 @@ export default function LoginModal({ onClose, onLogin }) {
         ? "http://localhost:8080/api/User"
         : "http://localhost:8080/api/User/login";
 
-      const res = await axios.post(endpoint, { email, name });
+      // Send only email and password on login, and email, name, password on register
+      const payload = isRegistering
+        ? { email, name, password }
+        : { email, password };
+
+      const res = await axios.post(endpoint, payload);
       const data = res.data;
 
       onLogin?.(data);
+      localStorage.setItem("user", JSON.stringify(data));
       onClose();
     } catch (err) {
       console.error(err);
       if (isRegistering) {
-        setError("Registrazione fallita. Forse l'utente esiste già.");
+        setError(
+          "Registration failed. User may already exist or data is invalid."
+        );
       } else {
-        setError("Email o nome non validi.");
+        setError("Invalid email or password.");
       }
     }
   };
@@ -38,7 +47,7 @@ export default function LoginModal({ onClose, onLogin }) {
         <button className="modal-close" onClick={onClose}>
           &times;
         </button>
-        <h2>{isRegistering ? "Registrazione" : "Login"}</h2>
+        <h2>{isRegistering ? "Register" : "Login"}</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="email"
@@ -48,21 +57,30 @@ export default function LoginModal({ onClose, onLogin }) {
             required
           />
           <input
-            type="text"
-            placeholder="Nome"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
+          {isRegistering && (
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          )}
           {error && <p className="error">{error}</p>}
-          <button type="submit">
-            {isRegistering ? "Registrati" : "Login"}
-          </button>
+          <button type="submit">{isRegistering ? "Register" : "Login"}</button>
         </form>
         <p className="toggle-mode">
-          {isRegistering ? "Hai già un account?" : "Non hai un account?"}{" "}
+          {isRegistering
+            ? "Already have an account?"
+            : "Don't have an account?"}{" "}
           <span onClick={() => setIsRegistering(!isRegistering)}>
-            {isRegistering ? "Accedi" : "Registrati"}
+            {isRegistering ? "Login" : "Register"}
           </span>
         </p>
       </div>

@@ -9,7 +9,15 @@ import LoginModal from "./pages/LoginModal";
 
 export default function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem("user");
+    return saved ? JSON.parse(saved) : null;
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  }
 
   const openLogin = (e) => {
     e.preventDefault();
@@ -31,7 +39,10 @@ export default function App() {
           </div>
           <div className="app-nav-right">
             {user ? (
-              <span className="nav-link nav-link--bold">Hello, {user.name}</span>
+              <>
+                <span className="nav-link">Hello, {user.name}</span>
+                <span className="nav-link" onClick={handleLogout}>Logout</span>
+              </>
             ) : (
               <Link to="#" className="nav-link nav-link--bold" onClick={openLogin}>
                 Login

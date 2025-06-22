@@ -14,7 +14,11 @@ export default function HomePage() {
   const fetchBooks = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api/Books");
-      setBooks(response.data);
+      const availableBooks = response.data
+        .filter((book) => book.isAvailable)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 10);
+      setBooks(availableBooks);
     } catch (error) {
       setError("Error fetching books.");
     } finally {
@@ -38,7 +42,6 @@ export default function HomePage() {
       <p>Find some books from our catalogue</p>
 
       <div className="scroll" style={{ "--time": "60s" }}>
-        {/* Duplico la lista per scorrimento infinito */}
         {[books, books].map((bookList, idx) => (
           <div key={idx}>
             {bookList.map((book) => (
@@ -47,7 +50,13 @@ export default function HomePage() {
                 <p>
                   <strong>Author:</strong> {book.author}
                 </p>
-                <p>{book.description}</p>
+                {book.coverUrl && (
+                  <img
+                    src={book.coverUrl}
+                    alt={`Cover of ${book.title}`}
+                    className="book-cover"
+                  />
+                )}
               </div>
             ))}
           </div>
