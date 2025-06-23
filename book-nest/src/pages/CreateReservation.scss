@@ -1,0 +1,86 @@
+@import "src/Styles/style.scss";
+
+.reservation-container {
+  background-color: $app-bg-color;
+  color: $app-text-color;
+  padding: 2rem;
+  min-height: 100vh;
+
+  h1 {
+    text-align: center;
+    color: $app-accent-color;
+    margin-bottom: 2rem;
+  }
+
+  .reservation-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: $app-card-bg;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      font-size: 1rem;
+      color: $app-title-color;
+
+      select {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid $app-accent-color;
+        background-color: $app-bg-color;
+        color: $app-text-color;
+      }
+    }
+
+    button {
+      padding: 0.75rem;
+      border-radius: 8px;
+      background-color: $app-accent-color;
+      color: $app-title-color;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: lighten($app-accent-color, 10%);
+      }
+    }
+  }
+
+  .info-message {
+    text-align: center;
+    color: $app-text-color;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+
+  .success-message {
+    color: $app-info-color;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .error-message {
+    color: $app-error-color;
+    background-color: $app-error-bg;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    text-align: center;
+    border: 1px solid $app-error-border;
+  }
+
+  .loading-message {
+    color: $app-info-color;
+    text-align: center;
+    margin-top: 3rem;
+  }
+}
