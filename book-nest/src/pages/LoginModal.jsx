@@ -33,7 +33,7 @@ export default function LoginModal({ onClose, onLogin }) {
       console.error(err);
       if (isRegistering) {
         setError(
-          "Registration failed. User may already exist or data is invalid."
+          "Registration failed. User may already exist or data is not invalid."
         );
       } else {
         setError("Invalid email or password.");
