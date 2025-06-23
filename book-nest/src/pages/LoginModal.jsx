@@ -15,8 +15,8 @@ export default function LoginModal({ onClose, onLogin }) {
 
     try {
       const endpoint = isRegistering
-        ? "http://localhost:8080/api/User"
-        : "http://localhost:8080/api/User/login";
+        ? "https://libraryapi-yyc7.onrender.com/api/User"
+        : "https://libraryapi-yyc7.onrender.com/api/User/login";
 
       // Send only email and password on login, and email, name, password on register
       const payload = isRegistering

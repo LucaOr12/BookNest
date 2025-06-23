@@ -20,7 +20,9 @@ export default function CreateReservation() {
 
   const fetchBooks = async () => {
     try {
-      const booksRes = await axios.get("http://localhost:8080/api/Books");
+      const booksRes = await axios.get(
+        "https://libraryapi-yyc7.onrender.com/api/Books"
+      );
       setBooks(booksRes.data.filter((b) => b.isAvailable));
     } catch (err) {
       setError("Failed to load books.");
@@ -40,10 +42,13 @@ export default function CreateReservation() {
     }
 
     try {
-      await axios.post("http://localhost:8080/api/Reservations", {
-        bookId: parseInt(selectedBookId),
-        userId: parseInt(currentUser.id),
-      });
+      await axios.post(
+        "https://libraryapi-yyc7.onrender.com/api/Reservations",
+        {
+          bookId: parseInt(selectedBookId),
+          userId: parseInt(currentUser.id),
+        }
+      );
       setSuccess("Reservation successfully created!");
       setSelectedBookId("");
     } catch (err) {

@@ -13,7 +13,9 @@ export default function HomePage() {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/Books");
+      const response = await axios.get(
+        "https://libraryapi-yyc7.onrender.com/api/Books"
+      );
       const availableBooks = response.data
         .filter((book) => book.isAvailable)
         .sort(() => 0.5 - Math.random())
