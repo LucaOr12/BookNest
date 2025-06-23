@@ -50,7 +50,7 @@
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: lighten($app-accent-color, 10%);
+        background-color: darken($app-accent-color, 10%);
       }
     }
   }

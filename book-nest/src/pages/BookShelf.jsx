@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./BookShelf.scss";
 
@@ -7,6 +8,7 @@ export default function BookShelf() {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedBook, setSelectedBook] = useState(null);
 
   useEffect(() => {
     fetchBooks();
@@ -30,6 +32,14 @@ export default function BookShelf() {
       book.author.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const navigate = useNavigate();
+  const handleReserve = (book) => {
+    navigate("/reserve", { state: { selectedBook: book } });
+  };
+
+  const openModal = (book) => setSelectedBook(book);
+  const closeModal = () => setSelectedBook(null);
+
   if (loading) return <div className="loading-message">Loading...</div>;
   if (error) return <div className="error-message">{error}</div>;
 
@@ -50,7 +60,11 @@ export default function BookShelf() {
       ) : (
         <div className="bookshelf-grid">
           {filteredBooks.map((book) => (
-            <div key={book.id} className="book-card-bookshelf">
+            <div
+              key={book.id}
+              className="book-card-bookshelf"
+              onClick={() => openModal(book)}
+            >
               <h2>{book.title}</h2>
               <p>
                 <strong>Author:</strong> {book.author}
@@ -64,6 +78,33 @@ export default function BookShelf() {
               )}
             </div>
           ))}
+        </div>
+      )}
+
+      {selectedBook && (
+        <div className="book-modal-backdrop" onClick={closeModal}>
+          <div className="book-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="close-button" onClick={closeModal}>
+              ×
+            </button>
+            <h2>{selectedBook.title}</h2>
+            <p>
+              <strong>Author:</strong> {selectedBook.author}
+            </p>
+            {selectedBook.coverUrl && (
+              <img
+                src={selectedBook.coverUrl}
+                alt={`Cover of ${selectedBook.title}`}
+                className="book-cover"
+              />
+            )}
+            <button
+              className="reserve-button"
+              onClick={() => handleReserve(selectedBook)}
+            >
+              Reserve
+            </button>
+          </div>
         </div>
       )}
     </div>

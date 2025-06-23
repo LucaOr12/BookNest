@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./CreateReservation.scss";
 
@@ -13,6 +14,7 @@ export default function CreateReservation() {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) setCurrentUser(storedUser);
+    if (preselectedBook) setSelectedBookId(preselectedBook.id.toString());
     fetchBooks();
   }, []);
 
@@ -48,6 +50,9 @@ export default function CreateReservation() {
       setError("Failed to create reservation.");
     }
   };
+
+  const location = useLocation();
+  const preselectedBook = location.state?.selectedBook;
 
   if (loading) return <div className="loading-message">Loading...</div>;
 
