@@ -42,8 +42,6 @@ export default function CreateReservation() {
       setError("Missing book or user.");
       return;
     }
-    console.log("Token: ", token);
-    console.log("Token:", currentUser?.token);
     try {
       await axios.post(
         "https://libraryapi-yyc7.onrender.com/api/Reservations",
