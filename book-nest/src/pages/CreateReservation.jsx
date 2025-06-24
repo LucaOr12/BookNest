@@ -11,8 +11,10 @@ export default function CreateReservation() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const token = storedUser?.token;
+
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) setCurrentUser(storedUser);
     if (preselectedBook) setSelectedBookId(preselectedBook.id.toString());
     fetchBooks();
@@ -36,17 +38,23 @@ export default function CreateReservation() {
     setError("");
     setSuccess("");
 
-    if (!selectedBookId || !currentUser) {
+    if (!selectedBookId || !storedUser) {
       setError("Missing book or user.");
       return;
     }
-
+    console.log("Token: ", token);
+    console.log("Token:", currentUser?.token);
     try {
       await axios.post(
         "https://libraryapi-yyc7.onrender.com/api/Reservations",
         {
           bookId: parseInt(selectedBookId),
-          userId: parseInt(currentUser.id),
+          userId: storedUser.user.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${currentUser.token}`,
+          },
         }
       );
       setSuccess("Reservation successfully created!");
@@ -66,7 +74,7 @@ export default function CreateReservation() {
       <h1>Create a New Reservation</h1>
 
       {currentUser && (
-        <p className="info-message">Reserving as: {currentUser.name}</p>
+        <p className="info-message">Reserving as: {currentUser.user.name}</p>
       )}
 
       <form onSubmit={handleSubmit} className="reservation-form">

@@ -9,14 +9,14 @@ import LoginModal from "./pages/LoginModal";
 
 export default function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [user, setUser] = useState(() => {
+  const [currentUser, setCurrentUser] = useState(() => {
     const saved = localStorage.getItem("user");
     return saved ? JSON.parse(saved) : null;
   });
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    setUser(null);
+    setCurrentUser(null);
   }
 
   const openLogin = (e) => {
@@ -38,9 +38,9 @@ export default function App() {
             <Link to="/reserve" className="nav-link">Create Reservation</Link>
           </div>
           <div className="app-nav-right">
-            {user ? (
+            {currentUser ? (
               <>
-                <span className="nav-link">Hello, {user.name}</span>
+                <span className="nav-link">Hello, {currentUser.user.name}</span>
                 <span className="nav-link" onClick={handleLogout}>Logout</span>
               </>
             ) : (
@@ -59,7 +59,7 @@ export default function App() {
           </Routes>
         </main>
 
-        {isLoginOpen && <LoginModal onClose={closeLogin} onLogin={setUser} />}
+        {isLoginOpen && <LoginModal onClose={closeLogin} onLogin={setCurrentUser} />}
       </div>
     </Router>
   );
