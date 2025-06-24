@@ -49,7 +49,6 @@ export default function CreateReservation() {
         "https://libraryapi-yyc7.onrender.com/api/Reservations",
         {
           bookId: parseInt(selectedBookId),
-          userId: storedUser.user.id,
         },
         {
           headers: {
