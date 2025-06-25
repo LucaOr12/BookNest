@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.scss";
 
@@ -17,7 +17,7 @@ export default function App() {
   const handleLogout = () => {
     localStorage.removeItem("user");
     setCurrentUser(null);
-  }
+  };
 
   const openLogin = (e) => {
     e.preventDefault();
@@ -27,6 +27,40 @@ export default function App() {
   const closeLogin = () => {
     setIsLoginOpen(false);
   };
+
+  useEffect(() => {
+    const refreshToken = async () => {
+      const saved = localStorage.getItem("user");
+      if (!saved) return;
+
+      const parsed = JSON.parse(saved);
+      try {
+        const res = await fetch("https://libraryapi-yyc7.onrender.com/api/User/refresh-token", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${parsed.token}`,
+          },
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const updatedUser = { ...parsed, token: data.token };
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+          setCurrentUser(updatedUser);
+        } else {
+          console.warn("Token expired or invalid. Logging out.");
+          handleLogout(); //auto-logout
+        }
+      } catch (err) {
+        console.error("Error refreshing token. Logging out.");
+        handleLogout(); // auto-logout
+      }
+    };
+
+    refreshToken(); // on first login
+    const interval = setInterval(refreshToken, 10 * 60 * 1000); // every 10 minutes
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Router>
