@@ -87,6 +87,24 @@ form {
     }
   }
 }
+
+.spinner {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 3px solid lighten($app-text-color, 20%);
+  border-top: 3px solid $app-title-color;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .toggle-mode {
   font-size: 0.9rem;
   margin-top: 1rem;

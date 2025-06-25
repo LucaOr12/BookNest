@@ -8,11 +8,15 @@ export default function CreateReservation() {
   const [selectedBookId, setSelectedBookId] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false); // nuovo stato loading submit
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const token = storedUser?.token;
+
+  const location = useLocation();
+  const preselectedBook = location.state?.selectedBook;
 
   useEffect(() => {
     if (storedUser) setCurrentUser(storedUser);
@@ -37,9 +41,11 @@ export default function CreateReservation() {
     e.preventDefault();
     setError("");
     setSuccess("");
+    setIsSubmitting(true);
 
     if (!selectedBookId || !storedUser) {
       setError("Missing book or user.");
+      setIsSubmitting(false);
       return;
     }
     try {
@@ -58,11 +64,10 @@ export default function CreateReservation() {
       setSelectedBookId("");
     } catch (err) {
       setError("Failed to create reservation.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
-  const location = useLocation();
-  const preselectedBook = location.state?.selectedBook;
 
   if (loading) return <div className="loading-message">Loading...</div>;
 
@@ -80,6 +85,7 @@ export default function CreateReservation() {
           <select
             value={selectedBookId}
             onChange={(e) => setSelectedBookId(e.target.value)}
+            disabled={isSubmitting}
           >
             <option value="">-- Choose a book --</option>
             {books.map((book) => (
@@ -90,7 +96,9 @@ export default function CreateReservation() {
           </select>
         </label>
 
-        <button type="submit">Reserve</button>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? <span className="spinner" /> : "Reserve"}
+        </button>
       </form>
 
       {success && <div className="success-message">{success}</div>}

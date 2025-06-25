@@ -264,6 +264,7 @@
     top: 70px;
     bottom: 70px;
     height: 100%;
+    pointer-events: none;
   }
   .book-card {
     width: 95%;
@@ -309,7 +310,10 @@
     }
 
     &:hover > div {
-      animation-play-state: paused;
+      transform: none;
+      box-shadow: none;
+      z-index: none;
+      animation-play-state: running;
     }
   }
 }
