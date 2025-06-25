@@ -5,7 +5,6 @@
   top: 250px;
   left: 0;
   right: 0;
-  bottom: 250px;
   overflow: hidden;
   background-color: $app-bg-color;
   padding: 2rem;
@@ -84,6 +83,25 @@
 
   100% {
     transform: translateX(-200%);
+  }
+}
+
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+@keyframes scroll-vertical2 {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-200%);
   }
 }
 
@@ -176,4 +194,122 @@
   font-size: 1.3rem;
   text-align: center;
   color: $app-info-color;
+}
+
+@media (max-width: 1920px) {
+  .home-container {
+    padding: 1.5rem;
+    top: 150px;
+    bottom: 150px;
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+    }
+
+    p {
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      text-align: center;
+    }
+  }
+
+  .scroll {
+    height: 280px;
+    overflow-x: auto;
+
+    > div {
+      flex-wrap: nowrap;
+    }
+  }
+
+  .book-card {
+    width: 45vw;
+    max-width: 220px;
+    height: auto;
+    padding: 0.8rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+
+  .book-cover {
+    max-height: 140px;
+  }
+
+  .placeholder {
+    margin-top: 2rem;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .error-message,
+  .loading-message {
+    font-size: 1rem;
+    padding: 0.75rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 599px) {
+  .home-container {
+    top: 70px;
+    bottom: 70px;
+    height: 100%;
+  }
+  .book-card {
+    width: 95%;
+    max-width: 93%;
+  }
+  .book-cover {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: auto;
+    display: block;
+  }
+  .scroll {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(
+      0deg,
+      transparent,
+      #fff 20%,
+      #fff 80%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      0deg,
+      transparent,
+      #fff 20%,
+      #fff 80%,
+      transparent
+    );
+    overflow: hidden;
+
+    > div {
+      flex-direction: column;
+      animation: scroll-vertical var(--time, 20s) linear infinite;
+      animation-delay: 0s;
+
+      &:nth-child(2) {
+        animation-name: scroll-vertical2;
+        animation-delay: calc(var(--time, 20s) / -2);
+      }
+    }
+
+    &:hover > div {
+      animation-play-state: paused;
+    }
+  }
 }
