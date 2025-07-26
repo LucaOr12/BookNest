@@ -22,7 +22,14 @@ export default function BookShelf() {
       const availableBooks = response.data.filter((book) => book.isAvailable);
       setBooks(availableBooks);
     } catch (error) {
-      setError("Error fetching books.");
+      console.warn("Error fetching books from API.");
+      try {
+        const fallbackResp = await fetch("/books-fallback.json");
+        const fallbackData = await fallbackResp.json();
+        setBooks(fallbackData.filter((book) => book.isAvailable));
+      } catch (fallbackErr) {
+        setError("Failed to load books from fallback");
+      }
     } finally {
       setLoading(false);
     }

@@ -22,7 +22,19 @@ export default function HomePage() {
         .slice(0, 10);
       setBooks(availableBooks);
     } catch (error) {
-      setError("Error fetching books.");
+      console.warn("Error fetching books from api.");
+      try {
+        const fallbackResp = await fetch("/books-fallback.json");
+        const fallbackData = await fallbackResp.json();
+        setBooks(
+          fallbackData
+            .filter((book) => book.isAvailable)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 10)
+        );
+      } catch (fallbackErr) {
+        setError("Failed to load books from fallback");
+      }
     } finally {
       setLoading(false);
     }

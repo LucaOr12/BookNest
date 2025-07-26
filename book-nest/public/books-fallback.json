@@ -1,0 +1,177 @@
+[
+  {
+    "id": 1,
+    "title": "The Shadow of the Wind",
+    "author": "Carlos Ruiz Zafón",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780143126393-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 2,
+    "title": "1984",
+    "author": "George Orwell",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780451524935-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 3,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780061120084-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 4,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780743273565-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 5,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780060850524-M.jpg",
+    "isAvailable": false
+  },
+  {
+    "id": 6,
+    "title": "Moby-Dick",
+    "author": "Herman Melville",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780142437247-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 7,
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780141439518-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 8,
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780316769488-M.jpg",
+    "isAvailable": false
+  },
+  {
+    "id": 9,
+    "title": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780140449136-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 10,
+    "title": "One Hundred Years of Solitude",
+    "author": "Gabriel García Márquez",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780060883287-M.jpg",
+    "isAvailable": false
+  },
+  {
+    "id": 11,
+    "title": "Frankenstein",
+    "author": "Mary Shelley",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780141439471-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 12,
+    "title": "Dracula",
+    "author": "Bram Stoker",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780141439846-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 13,
+    "title": "Don Quixote",
+    "author": "Miguel de Cervantes",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780060934347-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 14,
+    "title": "Jane Eyre",
+    "author": "Charlotte Brontë",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780142437209-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 15,
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780345339683-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 16,
+    "title": "Fahrenheit 451",
+    "author": "Ray Bradbury",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781451673319-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 17,
+    "title": "Les Misérables",
+    "author": "Victor Hugo",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780451419439-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 18,
+    "title": "The Picture of Dorian Gray",
+    "author": "Oscar Wilde",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780141439570-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 19,
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780061122415-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 20,
+    "title": "The Brothers Karamazov",
+    "author": "Fyodor Dostoevsky",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780374528379-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 21,
+    "title": "Amusing Ourselves to Death",
+    "author": "Neil Postman",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/0670804541-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 22,
+    "title": "Aldous Huxley's Brave New World",
+    "author": "Aldous Huxley",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/0060535261-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 23,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/0060850524-M.jpg",
+    "isAvailable": false
+  },
+  {
+    "id": 24,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/0060120351-M.jpg",
+    "isAvailable": true
+  },
+  {
+    "id": 25,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/0099477464-M.jpg",
+    "isAvailable": true
+  }
+]
